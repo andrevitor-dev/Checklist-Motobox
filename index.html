@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist-Manutenção de motos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="painel-oficina">
+        <div class="fundo-oficina"></div>
+
+        <!--Tela principal do aplicativo -->
+        <div class="tela-aplicativo tela-garagem">
+            <div class="topo-oficina">
+                <div class="botao-menu-oficina">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#000f3a" 
+                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu-icon lucide-menu">
+                        <path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/>
+                    </svg>
+                </div>
+                <div class="cabecalho-boas-vindas">
+                    <div class="moldura-icone-oficina">
+                        <div class="icone-oficina"></div>
+                        <img src="img/mechanic.png" alt="Logotipo">
+                    </div>
+                    <div class="dados-mecanico">
+                        <h1>Motobox</h1>
+                        <p>Motos para a revisão.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="area-dentro-bloco">
+                
+                <!-- Área que deixa um bloco sempre na incialização do aplicativo, para demostração -->
+                <div class="grade-motos">
+                    
+                    <div class="bloco-moto" data-id="trabalho">
+                        <div class="icone-moto-lateral">
+                            <img src="img/isolated-scooter-cartoon-white-background.png" alt="">
+                            <div class="dados-revisoes-moto">
+                                <h1>Suzuki</h1>
+                                <p class="contador-revisoes-pendentes">1 revisão</p>
+                            </div>
+                        </div>
+                        <div class="opcoes-gerenciamento-moto">
+                            <div class="botao-tres-pontos">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#000c22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ellipsis-vertical-icon lucide-ellipsis-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+                            </div>
+                            <div class="menu-pontos-flutuante">
+                                <button class="acao-editar-moto">Editar</button>
+                                <button class="acao-excluir-moto">Excluir</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela dos blocos criados das motos que precisam fazer as revisões -->
+        <div class="tela-aplicativo tela-detalhes-revisao">
+            <div class="seta-voltar">
+                <div class="botao-seta-voltar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#001336" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-big-left-dash-icon lucide-arrow-big-left-dash"><path d="M13 9a1 1 0 0 1-1-1V4.707a.707.707 0 0 0-1.207-.5l-6.94 6.94a1.207 1.207 0 0 0 0 1.707l6.94 6.94a.707.707 0 0 0 1.207-.5V16a1 1 0 0 1 1-1h2a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1z"/><path d="M20 9v6"/></svg>
+                </div>
+            </div>
+
+            <div class="cabecalho-moto-selecionada">
+                <img id="categoria-img" src="img/isolated-scooter-cartoon-white-background.png" alt=""> 
+                <div class="especificacoes-moto">
+                    <h1 id="categoria-titulo">Suzuki</h1>
+                    <p id="categoria-qtd">1 Revisão</p>
+                </div>
+            </div>
+            <!-- Área responsável por criar e gerenciar as tarefas (checklist) criadas -->
+            <div class="caixa-checklist-revisao">
+                <div class="lista-itens-revisao">
+                </div>
+            </div>
+        </div>
+
+        <!-- Elemento gráfico do (+) para o botão flutuante de adicionar (Blocos e tarefas) -->
+        <div class="botao-adicionar-checklist">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+        </div>
+
+        <!-- Área de criação do novo bloco -->
+        <div class="overlay-janela janela-novo-bloco" id="janela-novo-bloco">
+            <div class="caixa-dialogo-bloco">
+                <h3>Nova Moto</h3>
+                <p>Digite o nome da nova moto:</p><br>
+                <input type="text" id="input-nome-bloco" placeholder="Digite aqui."><br>
+                <div class="botoes-confirmacao">
+                    <button id="btn-cancelar-bloco" class="botao-cancelar-operacao">Cancelar</button>
+                    <button id="btn-confirmar-bloco" class="botao-confirmar-operacao">Criar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Área para poder escolher a fonte desejada (light ou bold) -->
+        <div class="overlay-janela janela-alterar-fonte" id="alterar-configurações">
+            <div class="caixa-dialogo-fontes">
+                <h3>Estilo da Fonte</h3>
+                <p>Escolha o estilo desejado:</p>
+                <div class="grupo-opcoes-fonte">
+                    <label>
+                        <input type="radio" name="estilo-fonte" value="arial-normal" checked> Inter Normal
+                    </label>
+                    <label>
+                        <input type="radio" name="estilo-fonte" value="arial-negrito"> Inter Negrito
+                    </label>
+                </div>
+                <div class="botoes-confirmacao">
+                    <button id="btn-fechar-config" class="botao-confirmar-operacao">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
