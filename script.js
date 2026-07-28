@@ -7,18 +7,28 @@ var categoriasContainer = document.querySelector(".grade-motos");
 var tarefasContainer = document.querySelector(".lista-itens-revisao");
 
 var categoriaImg = document.getElementById("categoria-img");
+var categoriaMecanico = document.getElementById("categoria-mecanico");
 var categoriaTitulo = document.getElementById("categoria-titulo");
 var categoriaQtd = document.getElementById("categoria-qtd");
 
 /*Estrutura de dados global.*/
 var dadosBlocos = {};
 var blocoAtualAberto = null;
+var blocoEmEdicao = null; // Guarda a referência do bloco que está sendo editado no modal
 
 /*Janelas*/
 var janelaNovoBloco = document.getElementById("janela-novo-bloco");
 var inputNomeBloco = document.getElementById("input-nome-bloco");
+var inputMecanicoBloco = document.getElementById("input-mecanico-bloco");
 var btnCancelarBloco = document.getElementById("btn-cancelar-bloco");
 var btnConfirmarBloco = document.getElementById("btn-confirmar-bloco");
+
+/* Janela de Edição */
+var janelaEditarBloco = document.getElementById("janela-editar-bloco");
+var inputEditarNomeBloco = document.getElementById("input-editar-nome-bloco");
+var inputEditarMecanicoBloco = document.getElementById("input-editar-mecanico-bloco");
+var btnCancelarEditarBloco = document.getElementById("btn-cancelar-editar-bloco");
+var btnConfirmarEditarBloco = document.getElementById("btn-confirmar-editar-bloco");
 
 var janelaConfiguracoes = document.getElementById("alterar-configurações");
 var btnFecharConfig = document.getElementById("btn-fechar-config");
@@ -121,24 +131,17 @@ function configurarBloco(bloco) {
             e.stopPropagation();
             menuDiv.classList.remove("menu-flutuante-ativo");
 
+            blocoEmEdicao = bloco;
             var h1 = bloco.querySelector("h1");
-            var input = document.createElement("input");
-            input.type = "text";
-            input.value = h1.textContent;
-            input.className = "campo-edicao-rapida-moto";
+            var pMecanico = bloco.querySelector(".nome-mecanico-bloco");
 
-            h1.replaceWith(input);
-            input.focus();
+            /*Preenche a area de edição com os textos atuais*/
+            inputEditarNomeBloco.value = h1 ? h1.textContent : "";
+            inputEditarMecanicoBloco.value = pMecanico ? pMecanico.textContent.replace(/^Mecânico:\s*/, "") : "";
 
-            input.onblur = () => {
-                var novoH1 = document.createElement("h1");
-                novoH1.textContent = input.value.trim() || "Bloco sem nome";
-                input.replaceWith(novoH1);
-            };
-
-            input.onkeydown = (e) => {
-                if (e.key === "Enter") input.blur();
-            };
+            /* Abre a area de edição estilizada do app*/
+            janelaEditarBloco.classList.add("janela-oficina-ativa");
+            inputEditarNomeBloco.focus();
         };
     }
 
@@ -157,6 +160,11 @@ function configurarBloco(bloco) {
 
         categoriaTitulo.textContent = bloco.querySelector("h1").textContent;
 
+        var elemMecanico = bloco.querySelector(".nome-mecanico-bloco");
+        if (elemMecanico && categoriaMecanico) {
+            categoriaMecanico.textContent = elemMecanico.textContent;
+        }
+
         var imgElemento = bloco.querySelector("img");
         if (imgElemento && categoriaImg.tagName === "img") {
             categoriaImg.src = imgElemento.src;
@@ -166,6 +174,46 @@ function configurarBloco(bloco) {
         wrapper.classList.add("exibir-detalhes-moto");
     };
 }
+
+/* Modal de Edição de Bloco */
+btnCancelarEditarBloco.onclick = () => {
+    janelaEditarBloco.classList.remove("janela-oficina-ativa");
+    blocoEmEdicao = null;
+};
+
+btnConfirmarEditarBloco.onclick = () => {
+    if (!blocoEmEdicao) return;
+
+    var novoNome = inputEditarNomeBloco.value.trim() || "Novo Bloco";
+    var novoMecanico = inputEditarMecanicoBloco.value.trim() || "Mecânico não informado";
+
+    var h1 = blocoEmEdicao.querySelector("h1");
+    var pMecanico = blocoEmEdicao.querySelector(".nome-mecanico-bloco");
+
+    if (h1) h1.textContent = novoNome;
+    
+    var textoMecanico = "Mecânico: " + novoMecanico;
+    if (pMecanico) {
+        pMecanico.textContent = textoMecanico;
+    } else {
+
+        /*Se não existia a tag do mecânico, ela é inserida*/
+        var divDados = blocoEmEdicao.querySelector(".dados-revisoes-moto");
+        var novoP = document.createElement("p");
+        novoP.className = "nome-mecanico-bloco";
+        novoP.textContent = textoMecanico;
+        divDados.insertBefore(novoP, divDados.querySelector(".contador-revisoes-pendentes"));
+    }
+
+    /* Se estiver no checklist aberto, atualiza também o cabeçalho*/
+    if (blocoAtualAberto === blocoEmEdicao) {
+        if (categoriaTitulo) categoriaTitulo.textContent = novoNome;
+        if (categoriaMecanico) categoriaMecanico.textContent = textoMecanico;
+    }
+
+    janelaEditarBloco.classList.remove("janela-oficina-ativa");
+    blocoEmEdicao = null;
+};
 
 /*Lógica da criação de tarefas*/
 function ativarEdicaoTarefa(item, index, idBloco) {
@@ -240,12 +288,15 @@ document.addEventListener("click", () => {
 /*Botão flutuante adicionar (+)*/
 addBtn.onclick = () => {
     if (!wrapper.classList.contains("exibir-detalhes-moto")) {
-        // Criar Novo Bloco
+
+        /*Criar Novo Bloco*/
         inputNomeBloco.value = "";
+        if (inputMecanicoBloco) inputMecanicoBloco.value = "";
         janelaNovoBloco.classList.add("janela-oficina-ativa");
         inputNomeBloco.focus();
     } else {
-        // Criar Nova Tarefa no Bloco Aberto
+
+        /*Cria Nova Tarefa no Bloco Aberto*/
         if (!blocoAtualAberto) return;
 
         var idBloco = blocoAtualAberto.getAttribute("data-id");
@@ -267,8 +318,11 @@ addBtn.onclick = () => {
 
 /*Janela de criar novo bloco*/
 btnCancelarBloco.onclick = () => janelaNovoBloco.classList.remove("janela-oficina-ativa");
+
 btnConfirmarBloco.onclick = () => {
-    var nome = inputNomeBloco.value.trim() || "Novo Bloco";
+    var nomeMoto = inputNomeBloco.value.trim() || "Novo Bloco";
+    var nomeMecanico = inputMecanicoBloco ? (inputMecanicoBloco.value.trim() || "") : "";
+
     var idUnico = "bloco-" + Date.now();
     dadosBlocos[idUnico] = [];
 
@@ -279,7 +333,8 @@ btnConfirmarBloco.onclick = () => {
         <div class="icone-moto-lateral">
             <img src="img/isolated-scooter-cartoon-white-background.png" alt="">
             <div class="dados-revisoes-moto">
-                <h1>${nome}</h1>
+                <h1>${nomeMoto}</h1>
+                <p class="nome-mecanico-bloco">Mecânico: ${nomeMecanico}</p>
                 <p class="contador-revisoes-pendentes">0 revisões</p>
             </div>
         </div>
@@ -295,5 +350,9 @@ btnConfirmarBloco.onclick = () => {
 
     categoriasContainer.appendChild(novoBloco);
     configurarBloco(novoBloco);
+
+    inputNomeBloco.value = "";
+    if (inputMecanicoBloco) inputMecanicoBloco.value = "";
+
     janelaNovoBloco.classList.remove("janela-oficina-ativa");
-};
+}
