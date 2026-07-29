@@ -100,18 +100,18 @@ Ao clicar em qualquer cartão de motocicleta na tela principal, o evento onclick
 
 ## Adicionar (Bloco ou Tarefa)
 
---O botão flutuante com ícone de soma (.botao-adicionar-checklist) identifica contextualmente em qual tela o usuário está através da presença da classe .exibir-detalhes-moto:
+O botão flutuante com ícone de soma (.botao-adicionar-checklist) identifica contextualmente em qual tela o usuário está através da presença da classe .exibir-detalhes-moto:
 
---Na Garagem: Abre a janela modal #janela-novo-bloco para digitação do nome da moto e do mecânico. Ao confirmar, gera um novo ID único (bloco-Date.now()), inicializa o array de tarefas vazio e cria o novo cartão no DOM.
+Na Garagem: Abre a janela modal #janela-novo-bloco para digitação do nome da moto e do mecânico. Ao confirmar, gera um novo ID único (bloco-Date.now()), inicializa o array de tarefas vazio e cria o novo cartão no DOM.
 
---Na Tela de Detalhes: Adiciona diretamente um novo objeto { texto: "Nova Revisão", concluida: false } no array da moto ativa, re-renderiza a lista e ativa automaticamente o foco para digitação da descrição da nova tarefa.
+Na Tela de Detalhes: Adiciona diretamente um novo objeto { texto: "Nova Revisão", concluida: false } no array da moto ativa, re-renderiza a lista e ativa automaticamente o foco para digitação da descrição da nova tarefa.
 ---
 
 ## Editar (Moto ou Tarefa)
 
---Editar Bloco/Moto: Ao clicar no botão "Editar" dentro do menu de três pontos do cartão, a modal #janela-editar-bloco é exibida com os campos preenchidos com os valores atuais. Ao salvar, os textos do h1 e do mecânico são atualizados no cartão e no cabeçalho ativo.
+Editar Bloco/Moto: Ao clicar no botão "Editar" dentro do menu de três pontos do cartão, a modal #janela-editar-bloco é exibida com os campos preenchidos com os valores atuais. Ao salvar, os textos do h1 e do mecânico são atualizados no cartão e no cabeçalho ativo.
 
---Editar Item do Checklist: Ao clicar no ícone de lápis de uma tarefa, a função ativarEdicaoTarefa substitui temporariamente o elemento <p> por um <input>. Ao pressionar a tecla Enter ou perder o foco (onblur), o texto atualizado é gravado no array dadosBlocos e a lista é re-renderizada.
+Editar Item do Checklist: Ao clicar no ícone de lápis de uma tarefa, a função ativarEdicaoTarefa substitui temporariamente o elemento <p> por um <input>. Ao pressionar a tecla Enter ou perder o foco (onblur), o texto atualizado é gravado no array dadosBlocos e a lista é re-renderizada.
 
 ---
 
