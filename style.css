@@ -6,6 +6,7 @@
     box-sizing: border-box;
 }
 
+/*Corpo do aplicativo, configurações principais que abrange todo o aplicativo.*/
 body {
     min-height: 100vh;
     color: #001336;
@@ -16,18 +17,21 @@ body {
     font-family: "Inter";
 }
 
+/*Responsável por deixar a fonte em Inter normal na parte de modificação de peso de fonte.*/
 .tipografia-oficina-padrao,
 .tipografia-oficina-padrao * {
     font-family: "Inter";
     font-weight: normal;
 }
 
+/*Responsável por deixar a fonte em Inter bold na parte de modificação de peso de fonte.*/
 .tipografia-oficina-negrito,
 .tipografia-oficina-negrito * {
     font-family: "Inter";
     font-weight: bold;
 }
 
+/*Responsável por deixar a tela principal e a tela secundária em seu devido lugar e dentro da moldura do celular.*/
 .painel-oficina {
     position: relative;
     height: 100vh;
@@ -37,33 +41,39 @@ body {
     display: flex;
 }
 
+/*Responsável por dexar a moldura do celular.*/
 @media(min-width: 768px){
     .painel-oficina{
         height: 50rem;
         width: 25rem;
         border-radius: 40px;
-        border: 10px solid #2e2e2e;
+        border: 9px solid #000000;
     }
 }
 
+/*Responsável pela transição do painel principal para o painel secundário.*/
 .painel-oficina .tela-aplicativo {
     flex: 1;
     min-width: 100%;
     transition: all 0.3s;
 }
 
+/*Responsável por tirar os elementos da tela principal quando fizer a transição para a tela secundária.*/
 .painel-oficina.exibir-detalhes-moto .tela-garagem{
     transform: translateX(-100%);
 }
 
+/*Responsável exibir as informações da tela secundária assim quehaver a transição.*/
 .painel-oficina.exibir-detalhes-moto .tela-detalhes-revisao{
     transform: translateX(-100%);
 }
 
+/*Responsável por deixar a caixa laranja na parte superior da tela secundária de um tamanho diferente da caixa laranja da tela principal quando hover a transição.*/
 .painel-oficina.exibir-detalhes-moto .fundo-oficina{
     transform: translate(-50%, -40%);
 }
 
+/*Responsável pela caixa laranja e as definições da caixa laranja que abrange as duas telas.*/
 .fundo-oficina {
     width: 135%;
     height: 13rem;
@@ -73,27 +83,27 @@ body {
     z-index: -1;
     transform: translateX(-50%);
     border-radius: 0 0 40% 10%;
-    background-color: #ff7b00;
+    background-color: #eb5e28;
     transition: all 0.3s;
     image-rendering: auto;
 }
 
+/*Responsável por dar o padding necessário para o icone de menu e o icone de foto de perfil.*/
 .topo-oficina {
     padding: 0 30px;
     position: relative;
     z-index: 10;
 }
 
+/*Responsável por toda a estilização do icone da foto de perfil.*/
 .foto-perfil-usuario {
     position: absolute;
     top: 1px;
     right: 20px;
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     overflow: hidden;
-    border: 2px solid #ff7b00;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     cursor: pointer;
     background-color: #ffffff;
     display: flex;
@@ -101,37 +111,45 @@ body {
     justify-content: center;
 }
 
+/*Responsável pela img que está dentro do circulo da foto de perfil que eu pré-defini uma classe a cima.*/
 .foto-perfil-usuario img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
+/*Responsável pelo cursor pointer (dedinho) do botão de menu no lado superior esquerdo.*/
 .botao-menu-oficina {
     cursor: pointer;
     width: 2rem;
 }
 
+/*Alinha e define o tamnho da logo e do icone do seu lado.*/
 .cabecalho-boas-vindas{
     display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: -10px;
+    margin-left: 20px;
+    gap: 10px;
 }
 
-.dados-mecanico{
-    padding: 4px 30px;
-    color: #001935;
+/*Responsável pela estilização da logo e do icone de foma separada.*/
+.logo-motobox .logo-cabecalho{
+    height: 10.5rem;
+    width: auto;
+    max-width: 100%;
+    margin-bottom: -22px;
+    margin-top: -15px;
 }
 
-h1{
-    font-size: 42px;
-    font-weight: bolder;
-}
-
+/*Responsável pela estilização da div que está o ícone de forma separada.*/
 .cabecalho-boas-vindas .moldura-icone-oficina img{
     width: 6rem;
+    margin-left: -2rem;
 }
 
+/*Responsável pela parte do que fica a frente da logo e da caixa laranja da tela do aplicativo.*/
 .area-dentro-bloco{
     margin-top: 1rem;
     height: calc(100% - 8rem);
@@ -140,6 +158,7 @@ h1{
     overflow: auto;
 }
 
+/*Responsável pela área ocupada por cada bloco criado.*/
 .grade-motos{
     padding-top: 2rem;
     display: flex;
@@ -147,11 +166,12 @@ h1{
     gap: 1.5rem;
 }
 
+/*Responsável pela estilização dos blocos.*/
 .grade-motos .bloco-moto{
-    background-color: #ffffff;
+    background-color: #f5f5f5;
     border-radius: 2.5rem;
     border-style: solid;
-    border-color: #d35f01;
+    border-color: #252422;
     padding: 1.5rem 1rem;
     cursor: pointer;
     display: flex;
@@ -161,11 +181,13 @@ h1{
     position: relative;
 }
 
+/*Responsável pelo hover e pela a animação de passar em cima do bloco com o mouse.*/
 .grade-motos .bloco-moto:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px 5px #6b58584b;
 }
 
+/*Responsável pela área ocupada pela imagem da moto no bloco.*/
 .bloco-moto .icone-moto-lateral {
     display: flex;
     gap: 1.5rem;
@@ -173,20 +195,24 @@ h1{
     width: 100%;
 }
 
+/*Responsável pelo tamanho da imagem da moto no bloco.*/
 .bloco-moto .icone-moto-lateral img {
     width: 4rem;
 }
 
+/*Responsável pelo tamanho da fonte do título (nome das motos) dos blocos.*/
 .bloco-moto .dados-revisoes-moto h1{
     font-size: 1.5rem;
 }
 
+/*Responsável pelo tamanho e estilização da fonte do subtítulo (revisões) dos blocos.*/
 .bloco-moto .dados-revisoes-moto p{
     color: #2b2b2b;
     font-size: 0.8rem;
     opacity: 0.6;
 }
 
+/*Responsável pelas opções de gerenciamento da moto (opções dos três pontinhos).*/
 .bloco-moto .opcoes-gerenciamento-moto{
     opacity: 1;
     visibility: hidden;
@@ -194,6 +220,7 @@ h1{
     position: relative;
 }
 
+/*Responsável pelo hover e a animação dos três pontinhos.*/
 .bloco-moto:hover .opcoes-gerenciamento-moto{
     opacity: 1;
     visibility: visible;
@@ -205,9 +232,9 @@ h1{
     right: 0;
     top: 2rem;
     background: #ffff;
-    border: 1px solid #ff0000;
+    border: 1px solid #eb5e28;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(177, 12, 12, 0.267);
+    box-shadow: 0 4px 12px #61220959;
     display: none;
     flex-direction: column;
     z-index: 100;
@@ -215,10 +242,12 @@ h1{
     overflow: hidden;
 }
 
+/*Responsável por deixar entrar no menu de ponto flutuante dos três pontinhos.*/
 .menu-pontos-flutuante.menu-flutuante-ativo {
     display: flex;
 }
 
+/*Responsável pela estilização do botão três pontinhos.*/
 .menu-pontos-flutuante button {
     padding: 8px 12px;
     border: none;
@@ -229,30 +258,22 @@ h1{
     color: #2e2e2e;
 }
 
+/*Responsável pelo hover da opção editar do menu flutuante dos três pontinhos.*/
 .menu-pontos-flutuante button:hover {
     background: #f1f5f9;
 }
 
+/*Responsável pelo hover da opção excluir do menu flutuante dos três pontinhos.*/
 .menu-pontos-flutuante button.acao-excluir-moto:hover{
     background: #ff000017;
 }
 
+/*Responsável pela cor do nome do botão excluir do menu flutuante dos três pontinhos.*/
 .menu-pontos-flutuante button.acao-excluir-moto {
     color: #ff0000;
 }
 
-.campo-edicao-rapida-moto {
-    font-size: 0.9rem;
-    border: 1px solid #001336;
-    border-radius: 4px;
-    padding: 4px 8px;
-    width: 100%;
-    outline: none;
-    background: #fff;
-    color: #2e2e2e;
-}
-
-/* Tela de aarefas */
+/* Tela de tarefas */
 .tela-detalhes-revisao .seta-voltar {
     display: flex;
     justify-content: space-between;
@@ -260,6 +281,7 @@ h1{
     padding: 5px;
 }
 
+/*Responsável pela estilização da seta da tela secundária.*/
 .tela-detalhes-revisao .seta-voltar svg {
     width: 2rem;
     cursor: pointer;
@@ -267,6 +289,7 @@ h1{
     margin: 0.8rem;
 }
 
+/*Responsável pela posição de informações presentes detro da tela secundária de cada bloco.*/
 .cabecalho-moto-selecionada {
     display: flex;
     align-items: center;    
@@ -275,14 +298,17 @@ h1{
     padding: 0 30px;
 }
 
+/*Responsável pelo tamanho da imagem que fica dentro das informações e detro da tela secundária de cada bloco.*/
 .cabecalho-moto-selecionada img {
     width: 4rem;
 }
 
+/*Responsável pela opacidade do nome do mecânico na tela secundária.*/
 .cabecalho-moto-selecionada .especificacoes-moto p {
     opacity: 0.6;
 }
 
+/*Responsável pela posição e ajuste do checkbox da tela secundária de cada b.*/
 .caixa-checklist-revisao {
     padding: 0 30px;
     margin-top: 1rem;
@@ -290,12 +316,14 @@ h1{
     max-height: calc(100% - 13rem);
 }
 
+/*Responsável pelo distanciamento de cada item do checklist presente dentro dos blocos.*/
 .lista-itens-revisao {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
+/*Responsável pelo posicionamento e alinhamento dos botões e textos na área dos items do checklist.*/
 .lista-itens-revisao .item-checklist {
     display: flex;
     align-items: center;
@@ -310,6 +338,7 @@ h1{
     display: none;
 }
 
+/*Responsável pela estilização do checkbox.*/
 .lista-itens-revisao .caixa-selecao-revisao {
     width: 1.2rem;
     height: 1.2rem;
@@ -321,6 +350,7 @@ h1{
     flex-shrink: 0;
 }
 
+/*Responsável por fazer sumir e aparecer o check quando passamos o mouse por cima.*/
 .lista-itens-revisao .caixa-selecao-revisao svg {
     width: 0.9rem;
     color: #2e2e2e;
@@ -328,34 +358,41 @@ h1{
     transition: all 0.3s;
 }
 
+/*Responsável pelo hover suavisado para aparecer o check.*/
 .lista-itens-revisao:hover .caixa-selecao-revisao svg {
     opacity: 1;
 }
 
+/*Responsável pela grossura do svg do check.*/
 .lista-itens-revisao .caixa-selecao-revisao svg path {
     stroke-width: 3;
 }
 
+/*Responsável pelo preenchimento verde do checkbox.*/
 .lista-itens-revisao input:checked ~ .caixa-selecao-revisao {
     background-color: #359e61;
 }
 
+/*Responsável pelo check branco quando apertamos para concluir uma tarefa.*/
 .lista-itens-revisao input:checked ~ .caixa-selecao-revisao svg {
     opacity: 1;
     color: #fff;
 }
 
+/*Responsável pela delimitação da área do texto dos items de cada checklist.*/
 .lista-itens-revisao .descricao-item-revisao {
     flex: 1;
     word-break: break-word;
 }
 
+/*Responsável pelo alinhamento separado dos botões de editar  e excluir de cada item do checklist.*/
 .lista-itens-revisao .acoes-item-revisao {
     display: flex;
     gap: 0.4rem;
     margin-left: auto;
 }
 
+/*Responsável por definir os botões de editar  eexcluir cada item do checklist.*/
 .lista-itens-revisao .botao-editar-item,
 .lista-itens-revisao .botao-excluir-item {
     width: 2rem;
@@ -371,22 +408,26 @@ h1{
     transition: all 0.3s;
 }
 
+/*Responsável pela opaciadade dos botões de editar e excluir de cada item do checklist.*/
 .lista-itens-revisao .botao-editar-item,
 .lista-itens-revisao .botao-excluir-item:hover {
     visibility: visible;
     opacity: 1;
 }
 
+/*Responsável pelo hover do botão editar de cada item do checklist.*/
 .lista-itens-revisao .botao-editar-item:hover {
     color: #171992;
     background-color: rgba(0,123,255, 0.15);
 }
 
+/*Responsável pelo hover do botão excluir de cada item do checklist.*/
 .lista-itens-revisao .botao-excluir-item:hover {
     color: red;
     background-color: rgba(255,0,0, 0.15);
 }
 
+/*Responsável pela estilização do botão adicionar do lado inferior direito.*/
 .botao-adicionar-checklist {
     position: absolute;
     bottom: 1rem;
@@ -394,7 +435,7 @@ h1{
     width: 3.5rem;
     height: 3.5rem;
     border-radius: 4px 12px;
-    background-color: #ff7b00;
+    background-color: #eb5e28;
     color: white;
     display: flex;
     align-items: center;
@@ -403,10 +444,12 @@ h1{
     z-index: 10;
 }
 
+/*Responsável pela animação do botão adicionar do lado inferior direito.*/
 .botao-adicionar-checklist:hover {
     transform: scale(1.1);
 }
 
+/*Responsável pelo tamanho do svg mais que está no botão de adicionar.*/
 .botao-adicionar-checklist svg {
     width: 2rem;
     color: #2e2e2e;
@@ -420,17 +463,20 @@ h1{
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
     display: none;
     align-items: center;
     justify-content: center;
     z-index: 200;
-    accent-color: #ff9100;
+    accent-color: #eb5e28;
 }
 
+/*Responsável por fazer aparecer as caixar de criação e edição de cada bloco.*/
 .overlay-janela.janela-oficina-ativa {
     display: flex;
 }
 
+/*Responsável pela estilização da caixa onde estão as fontes na parte "dentro" do icone de menu na parte superior esquerda.*/
 .caixa-dialogo-fontes {
     background-color: #fff;
     width: 85%;
@@ -439,6 +485,7 @@ h1{
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
+/*Responsável pela estilização da caixa de criação e edição dos blocos.*/
 .caixa-dialogo-bloco{
     background-color: #fff;
     width: 75%;
@@ -447,32 +494,26 @@ h1{
     box-shadow: 0 5px 15px rgba(121, 44, 44, 0.3);
 }
 
+/*Responsável pela estilização do input type text da caixa de criação e edição dos blocos.*/
 .caixa-dialogo-bloco input{
-    height: 30px;
+    height: 35px;
     margin-bottom: 20px;
 }
 
+/*Responsável pelo tamanho e posição do título do menu de alteração de peso das fontes.*/
 .caixa-dialogo-fontes h3 {
     font-size: 1.2rem;
     margin-bottom: 5px;
 }
 
+/*Responsável pelo tamanho e posição do paragráfo do menu de alteração de peso das fontes.*/
 .caixa-dialogo-fontes p {
     font-size: 0.85rem;
     color: #666;
     margin-bottom: 12px;
 }
 
-.caixa-dialogo-fontes{
-    width: 100%;
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    margin: 30px;
-    outline: none;
-}
-
+/*Responsável pelo distanciamento das opções de peso de fonte na caixa "dentro" do menu do lado superior esquerdo.*/
 .grupo-opcoes-fonte {
     display: flex;
     flex-direction: column;
@@ -480,6 +521,7 @@ h1{
     margin-bottom: 20px;
 }
 
+/*Responsável pelo delimitação do texto na caixa "dentro" do menu do lado superior esquerdo.*/
 .grupo-opcoes-fonte label {
     display: flex;
     align-items: center;
@@ -488,12 +530,15 @@ h1{
     font-size: 0.95rem;
 }
 
+
+/*Responsável pelo alinhamento do botão fechar na caixa "dentro" do menu do lado superior esquerdo.*/
 .botoes-confirmacao {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
 }
 
+/*Responsável pelo estilização do botão fechar na caixa "dentro" do menu do lado superior esquerdo e no botão cancelar e criar da caixa de criação dos blocos.*/
 .botoes-confirmacao button {
     padding: 8px 16px;
     border: none;
@@ -502,13 +547,15 @@ h1{
     cursor: pointer;
 }
 
+/*Responsável pela cor do botão cancelar na caixa de criação dos blocos.*/
 .botao-cancelar-operacao {
     background-color: #e2e8f0;
     color: #475569;
 }
 
+/*Responsável pela cor do botão criar na caixa de criação dos blocos.*/
 .botao-confirmar-operacao {
-    background-color: #ff7b00;
+    background-color: #eb5e28;
     color: #fdfdfd;
 }
 
@@ -525,13 +572,16 @@ h1{
     color: #2e2e2e;
 }
 
+/*Responsável pelo posicionamento do nome do mecânico no bloco.*/
 .bloco-moto .dados-revisoes-moto .nome-mecanico-bloco{
     font-weight: 600;
     color: #2b2b2b;
-    margin-top: 2px;
+    margin-top: 4px;
+    margin-bottom: 4px;
     font-size: 0.85rem;
 }
 
+/*Responsável pelo posicionamento do nome do mecânico na tela secundária.*/
 .especificacoes-moto .mecanico-cabecalho-detalhes{
     font-size: 0.9rem;
     font-weight: 600;

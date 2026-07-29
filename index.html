@@ -7,12 +7,15 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+    <!--Div principal reponsavél por dar a estrutura para a tela e para tudo que está dentro.-->
     <div class="painel-oficina">
+        <!--Responsável pelo retângulo laranja que fica no lado superior, usado para elegância e para combinar com o tema.-->
         <div class="fundo-oficina"></div>
 
-        <!--Tela principal do aplicativo -->
+        <!--Tela principal do aplicativo.-->
         <div class="tela-aplicativo tela-garagem">
+
+            <!--Botão de menu, foto de perfil e logo.-->
             <div class="topo-oficina">
                 <div class="botao-menu-oficina">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#000c22" 
@@ -21,29 +24,37 @@
                     <rect width="7" height="9" x="14" y="12" rx="1"/>
                     <rect width="7" height="5" x="3" y="16" rx="1"/></svg>
                 </div>
-
+                
+                <!--Div responsável pelas configurações do icone de perfil canto superior direito-->
                 <div class="foto-perfil-usuario">
-                    <img src="img/cogwheel.png" alt="Foto de perfil">
+                    <img src="img/boy.png" alt="Foto de perfil">
                 </div>
+
+                <!--Div que envolve as configurações de icone e logo-->
                 <div class="cabecalho-boas-vindas">
+                    
+                    <!--Div responsável por deixar a logo e o icone nos seus devidos lugares e nos tamanhos certos.-->
                     <div class="moldura-icone-oficina">
-                        <div class="icone-oficina"></div>
                         <img src="img/mechanic.png" alt="Logotipo">
                     </div>
-                    <div class="dados-mecanico">
-                        <h1>Motobox</h1>
-                        <p>Motos para a revisão.</p>
+
+                    <!--Div responsável pela logo.-->
+                    <div class="logo-motobox">
+                        <img src="img/motobox logo.png" alt="Logo Motobox" class="logo-cabecalho">
                     </div>
                 </div>
             </div>
+            
+            <!--Div responsável pelas informações e o menu dos três pontinhos que está em cada bloco criado.-->
             <div class="area-dentro-bloco">
                 
                 <!-- Área que deixa um bloco sempre na incialização do aplicativo, para demostração -->
                 <div class="grade-motos">
                     
+                    <!--Div pai que modifica o bloco.-->
                     <div class="bloco-moto" data-id="trabalho">
                         <div class="icone-moto-lateral">
-                            <img src="img/isolated-scooter-cartoon-white-background.png" alt="Ícone moto">
+                            <img src="img/motorbike.png" alt="Ícone moto">
                             <div class="dados-revisoes-moto">
                                 <h1>Suzuki</h1>
                                 <p class="nome-mecanico-bloco">Mecânico: Ademir</p>
@@ -59,6 +70,7 @@
                                     <circle cx="12" cy="19" r="1"/>
                                 </svg>
                             </div>
+                            <!--Divi responsável pela informação Editar e Excluir que está dentro dos três pontinhos.-->
                             <div class="menu-pontos-flutuante">
                                 <button class="acao-editar-moto">Editar</button>
                                 <button class="acao-excluir-moto">Excluir</button>
@@ -79,13 +91,14 @@
             </div>
 
             <div class="cabecalho-moto-selecionada">
-                <img id="categoria-img" src="img/isolated-scooter-cartoon-white-background.png" alt=""> 
+                <img id="categoria-img" src="img/motorbike.png" alt="Ícone moto"> 
                 <div class="especificacoes-moto">
                     <p id="categoria-mecanico" class="mecanico-cabecalho-detalhes">Mecânico: Ademir</p>
                     <h1 id="categoria-titulo">Suzuki</h1>
                     <p id="categoria-qtd">1 Revisão</p>
                 </div>
             </div>
+            
             <!-- Área responsável por criar e gerenciar as tarefas (checklist) criadas -->
             <div class="caixa-checklist-revisao">
                 <div class="lista-itens-revisao">
@@ -101,10 +114,9 @@
         <!-- Área de criação do novo bloco -->
         <div class="overlay-janela janela-novo-bloco" id="janela-novo-bloco">
             <div class="caixa-dialogo-bloco">
-                <h3>Nova Moto</h3>
-                <p>Digite o nome da nova moto:</p><br>
+                <p><strong> Digite o nome da nova moto:</strong></p><br>
                 <input type="text" id="input-nome-bloco" placeholder="Digite aqui."><br>
-                <p>Digite o nome do mecânico</p>
+                <p><strong> Digite o nome do mecânico:</strong></p><br>
                 <input type="text" id="input-mecanico-bloco" placeholder="Ex: João Silva"><br>
                 <div class="botoes-confirmacao">
                     <button id="btn-cancelar-bloco" class="botao-cancelar-operacao">Cancelar</button>
@@ -112,7 +124,7 @@
                 </div>
             </div>
         </div>
-
+        <!--Div responsável pela edição dos blocos criados, mudando o nome do bloco e o nome do mecânico-->
         <div class="overlay-janela janela-editar-bloco" id="janela-editar-bloco">
             <div class="caixa-dialogo-bloco">
                 <h3>Editar Moto</h3>

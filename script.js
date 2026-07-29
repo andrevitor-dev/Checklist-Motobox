@@ -75,6 +75,7 @@ function atualizarContadorTarefas() {
     if (textoDoBloco) textoDoBloco.textContent = texto;
 }
 
+/*Funçaõ de ação de criação da tela secundária do jeito que ela deve ficar.*/
 function renderizarTarefasDoBloco(idBloco) {
     tarefasContainer.innerHTML = "";
     var tarefas = dadosBlocos[idBloco] || [];
@@ -112,7 +113,7 @@ function renderizarTarefasDoBloco(idBloco) {
     atualizarContadorTarefas();
 }
 
-/* Lógica das categorias dos blocos*/
+/* Função rsponsável pelas ações dos botões das categorias dos blocos*/
 function configurarBloco(bloco) {
     var toggleBtn = bloco.querySelector(".botao-tres-pontos");
     var menuDiv = bloco.querySelector(".menu-pontos-flutuante");
@@ -244,6 +245,7 @@ function ativarEdicaoTarefa(item, index, idBloco) {
     };
 }
 
+/*Dá a vida aos botões do check box da lixeira e de editar, criar novo bloco e criação de tarefas.*/
 function configurarTarefa(item, index, idBloco) {
     var checkbox = item.querySelector("input[type='checkbox']");
     var btnEditar = item.querySelector(".botao-editar-item");
@@ -331,7 +333,7 @@ btnConfirmarBloco.onclick = () => {
     novoBloco.setAttribute("data-id", idUnico);
     novoBloco.innerHTML = `
         <div class="icone-moto-lateral">
-            <img src="img/isolated-scooter-cartoon-white-background.png" alt="">
+            <img src="img/motorbike.png" alt="">
             <div class="dados-revisoes-moto">
                 <h1>${nomeMoto}</h1>
                 <p class="nome-mecanico-bloco">Mecânico: ${nomeMecanico}</p>
