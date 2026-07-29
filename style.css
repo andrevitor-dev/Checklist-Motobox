@@ -574,7 +574,7 @@ body {
     color: #fdfdfd;
 }
 
-/*Estilização do input de texto da tarefa */
+/*Estilização do input de texto da tarefa.*/
 .lista-itens-revisao input.campo-edicao-rapida-moto {
     display: block !important;
     flex: 1;
