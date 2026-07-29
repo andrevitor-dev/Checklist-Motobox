@@ -499,7 +499,7 @@ body {
     width: 75%;
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(121, 44, 44, 0.3);
+    box-shadow: 0 5px 15px rgba(112, 40, 40, 0.3);
 }
 
 /*Responsável pela estilização do input type text da caixa de criação e edição dos blocos.*/
