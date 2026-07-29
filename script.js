@@ -308,7 +308,6 @@ addBtn.onclick = () => {
         dadosBlocos[idBloco].push({ texto: "Nova Revisão", concluida: false });
         
         renderizarTarefasDoBloco(idBloco);
-
         /*Abre o campo de texto para digitar na tarefa recém criada*/
         var ultimosItens = tarefasContainer.querySelectorAll(".item-checklist");
         var ultimoItem = ultimosItens[ultimosItens.length - 1];
