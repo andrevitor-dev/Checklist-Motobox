@@ -1,41 +1,39 @@
 # Checklist - Manutenção de Motos (Motobox)
 
-## Aluno
-
-**Nome:** André Vitor da Silva Oliveira Calixto
-
-**Disciplina:** Linguagem de Script
-
-**Tema:** Checklist de manutenção de motos (oficina mecânica)
+### Aluno
+- **Nome:** André Vitor da Silva Oliveira Calixto
+- **Disciplina:** Linguagem de Script
+- **Tema:** Checklist de manutenção de motos (oficina mecânica)
 
 ---
 
-# Descrição do projeto
+## Descrição do projeto
 
-Este projeto consiste em uma aplicação web desenvolvida com HTML, CSS e JavaScript puro para o gerenciamento de revisões e manutenções preventivas e corretivas de motocicletas.
+Este projeto consiste em uma aplicação web desenvolvida com **HTML5, CSS3 e JavaScript puro** voltada para o gerenciamento de revisões, checklists e manutenções preventivas/corretivas de motocicletas em uma oficina mecânica.
 
-A aplicação permite organizar as motocicletas da oficina em blocos visuais, possibilitando cadastrar novas motos, editar informações, marcar itens de revisão como concluídos, excluir tarefas ou veículos e ajustar preferências de tipografia.
+A aplicação permite organizar as motocicletas registradas na oficina em blocos visuais (cards), possibilitando cadastrar novos veículos, associar o nome do mecânico responsável, editar informações diretamente na interface, criar e marcar itens de revisão como concluídos, excluir tarefas ou veículos e ajustar preferências de tipografia globalmente.
 
-O objetivo do projeto é aplicar conceitos de manipulação dinâmica do DOM, gerenciamento de eventos, estilização responsiva *mobile-first* e persistência de dados utilizando apenas tecnologias fundamentais da Web.
-
----
-
-# Funcionalidades
-
-- **Gerenciamento de Garagem (Blocos):** Organização e exibição das motocicletas registradas na oficina em blocos interativos;
-- **Adição de Novas Motos:** Janela modal integrada para cadastrar novos veículos à lista de revisões;
-- **Navegação e Transição Fluida:** Alternância visual de telas entre a Garagem (visão geral) e os Detalhes da Revisão da moto selecionada;
-- **Gestão de Checklist de Manutenção:**
-  - Adição de novos itens de checklist (ex.: troca de óleo, regulagem de correntes, checagem de freios);
-  - Edição inline direta do texto das tarefas e dos nomes dos blocos;
-  - Marcação de itens como concluídos com destaque visual (texto tachado/riscado);
-  - Exclusão individual de tarefas e de blocos de motos;
-- **Contador Dinâmico:** Atualização automática da quantidade de revisões pendentes por moto e no painel principal;
-- **Ajuste de Tipografia:** Modal de configurações para alterar a variação do peso da fonte (*Inter Normal* vs. *Inter Negrito*) em toda a aplicação.
+O objetivo principal do projeto é consolidar e aplicar conceitos fundamentais de manipulação dinâmica do DOM, gerenciamento de eventos, layout responsivo *mobile-first* com simulação de mockup e persistência/sincronização em memória e estado da interface utilizando tecnologias fundamentais da Web.
 
 ---
 
-# Estrutura do projeto
+## Funcionalidades
+
+- **Gerenciamento de Garagem (Blocos/Cards):** Organização e exibição das motocicletas registradas na oficina em cartões interativos contendo título da moto, nome do mecânico e quantidade de revisões pendentes.
+- **Adição de Novas Motos:** Janela modal sobreposta (*overlay*) integrada para cadastrar novos veículos e associar o mecânico responsável.
+- **Edição de Blocos/Motos:** Modal de edição dinâmica para alterar o nome da motocicleta e o mecânico encarregado a qualquer momento.
+- **Navegação e Transição Fluida:** Alternância visual suave entre a Garagem (visão geral das motos) e a Tela de Detalhes da Revisão da moto selecionada via translações CSS.
+- **Gestão Completa de Checklist de Manutenção:**
+  - **Adição de novas tarefas:** Criação de itens de checklist para acompanhamento dos serviços (ex.: troca de óleo, regulagem de correntes, checagem de freios).
+  - **Edição Inline Direta:** Alteração rápida do texto da tarefa em tempo real convertendo o elemento em um campo de entrada (`<input>`).
+  - **Marcação de Conclusão:** Checkbox customizado com destaque visual imediato (fundo verde e texto riscado/opacity reduzida).
+  - **Exclusão de Tarefas e Blocos:** Remoção individual de itens do checklist via ícone de lixeira ou exclusão completa do cartão da motocicleta pelo menu suspenso.
+- **Contador Dinâmico:** Atualização em tempo real da quantidade total de revisões cadastradas no cabeçalho da moto e no cartão da garagem.
+- **Ajuste de Tipografia:** Modal de configurações para alternar o peso da fonte (*Inter Normal* vs. *Inter Negrito*) em toda a aplicação.
+
+---
+
+## Estrutura do projeto
 
 ```text
 motobox-checklist/
@@ -44,51 +42,41 @@ motobox-checklist/
 │── style.css
 │── script.js
 └── img/
+    ├── boy.png
     ├── mechanic.png
-    └── isolated-scooter-cartoon-white-background.png
+    ├── motobox logo.png
+    └── motorbike.png
 ```
 
 ### index.html
-
-Responsável pela estrutura da aplicação, contendo as duas telas principais e os modais sobrepostos (*overlays*):
-
-- **Tela principal:** Exibe o cabeçalho de boas-vindas, o painel da oficina e a grade de motos cadastradas;
-- **Tela de Detalhes da Revisão:** Apresenta o cabeçalho da moto selecionada, a lista de tarefas de checklist e o botão de retorno;
-- **Janelas Modais:** Diálogos para criação de novos blocos (`#janela-novo-bloco`) e alteração do estilo da fonte (`#alterar-configurações`).
-
----
+Responsável pela estrutura semântica da aplicação, contendo as duas telas principais de navegação e as janelas modais sobrepostas (*overlays*):
+- **Tela Principal (`.tela-garagem`):** Contém o cabeçalho com a logo da Motobox, foto de perfil, ícone do menu de configurações e a grade de motos cadastradas (`.grade-motos`).
+- **Tela de Detalhes (`.tela-detalhes-revisao`):** Apresenta o botão de retorno, o cabeçalho da moto selecionada (com nome, mecânico e contador) e a lista de tarefas de checklist (`.lista-itens-revisao`).
+- **Janelas Modais (*Overlays*):** Diálogos para criação de novos blocos (`#janela-novo-bloco`), edição de blocos existentes (`#janela-editar-bloco`) e alteração do estilo da fonte da interface (`#alterar-configurações`).
 
 ### style.css
-
-Responsável por toda a identidade visual e comportamento responsivo do sistema, incluindo:
-
-- Layout simulando uma interface de aplicativo mobile em telas maiores (*mockup* centrado com bordas arredondadas);
-- Paleta de cores em tons marcantes de laranja (`#ff7b00`) e azul escuro (`#001336`);
-- Efeitos de transição fluida entre telas utilizando translações CSS (`transform: translateX(-100%)`);
-- Estilização de botões flutuantes, seletores de checkbox customizados, menus contextuais e modais com fundo escurecido.
-
----
+Responsável pela identidade visual, estilização moderna e comportamento responsivo do sistema:
+- **Design e Layout Mockup:** Estilização centralizada simulando uma interface de aplicativo *mobile* em telas maiores (largura máxima fixada com bordas arredondadas e moldura escura).
+- **Paleta de Cores Temática:** Destaques marcantes em laranja vibrante (`#eb5e28`), escuro metálico (`#001336` e `#000c22`) e detalhes em verde (`#359e61`) para tarefas concluídas.
+- **Transições e Efeitos de Tela:** Efeitos suaves de deslocamento entre a garagem e a tela de detalhes através da classe `.exibir-detalhes-moto` aplicada ao contêiner pai.
+- **Componentes Customizados:** Checkboxes estilizados com SVG, menu suspenso flutuante de três pontos, botões com efeito *hover*, modais com fundo escurecido e desfocado (`backdrop-filter: blur(3px)`).
 
 ### script.js
-
-Responsável por toda a inteligência e lógica do sistema.
-
-Entre suas funções estão:
-
-- Alternar visualmente entre a tela inicial e a tela de detalhes;
-- Criar dinamicamente novos blocos de motocicletas na grade;
-- Renderizar e filtrar dinamicamente a lista de tarefas da moto selecionada (`renderizarTarefasDoBloco`);
-- Controlar a edição *inline* ativando campos de entrada (`<input>`) ao editar motos ou tarefas;
-- Atualizar dinamicamente os contadores de revisões em tempo real (`atualizarContadorTarefas`);
-- Salvar e carregar o estado da aplicação através do armazenamento local no navegador (`localStorage`).
+Responsável pela inteligência, reatividade e manipulação dinâmica do DOM da aplicação:
+- **Alternância de Telas:** Controla a exibição da tela de detalhes ou retorno para a garagem ajustando classes no elemento `.painel-oficina`.
+- **Criação e Gestão de Blocos:** Gera IDs únicos via `Date.now()`, insere novos elementos HTML na grade e atualiza a estrutura de dados global.
+- **Renderização do Checklist (`renderizarTarefasDoBloco`):** Limpa e reconstrói dinamicamente os itens de checklist da moto selecionada.
+- **Edição Inline (`ativarEdicaoTarefa`):** Transforma dinamicamente tags `<p>` em elementos `<input type="text">` e salva as alterações ao pressionar Enter ou perder o foco (`blur`).
+- **Atualização de Contadores (`atualizarContadorTarefas`):** Recalcula e exibe a quantidade exata de revisões em tempo real.
+- **Personalização de Tipografia:** Gerencia a troca de classes no wrapper pai para alterar o peso da fonte Inter (*Normal* ou *Negrito*).
 
 ---
 
-# Como a aplicação funciona
+## Como a aplicação funciona
 
-Os dados da aplicação são organizados em memória através de um objeto JavaScript global denominado `dadosBlocos`.
+Os dados das motos e suas respectivas tarefas são organizados em memória por meio do objeto JavaScript global `dadosBlocos`.
 
-Nesse objeto, cada chave corresponde a um identificador único de bloco (`data-id`), e o valor associado é um *array* de objetos contendo as tarefas de revisão (com seus respectivos textos e estados de conclusão).
+Nesse objeto, cada chave representa o identificador único do bloco/moto (`data-id`), e o valor associado é um *array* de objetos contendo as tarefas de revisão (com seus textos descritivos e estados de conclusão):
 
 ```javascript
 var dadosBlocos = {
@@ -106,22 +94,24 @@ Sempre que o usuário realiza alguma ação — como cadastrar uma nova moto, ad
 
 ## Seleção de bloco de moto
 
-Ao clicar no cartão de uma motocicleta na tela principal, a aplicação obtém o atributo `data-id`, altera as informações do cabeçalho da moto ativa, renderiza a lista de tarefas correspondente e aplica a classe CSS que realiza a transição para a tela de detalhes.
+Ao clicar em qualquer cartão de motocicleta na tela principal, o evento onclick captura o atributo data-id do bloco. A aplicação extrai as informações de título, mecânico e imagem, preenche o cabeçalho da tela de detalhes, invoca a função renderizarTarefasDoBloco(id) e aplica a classe .exibir-detalhes-moto ao painel principal para acionar a transição de tela.
 
 ---
 
 ## Adicionar (Bloco ou Tarefa)
 
-O botão flutuante com o ícone de soma (`+`) possui comportamento duplo de acordo com a tela ativa:
-- **Na Garagem:** Abre a janela modal para digitação do nome da nova moto. Ao confirmar, um novo bloco é criado com um ID único gerado via `Date.now()`.
-- **Na Tela de Detalhes:** Insere uma nova tarefa padrão (`"Nova Revisão"`) no array da moto ativa, renderiza novamente a lista e ativa automaticamente o foco para digitação da descrição.
+--O botão flutuante com ícone de soma (.botao-adicionar-checklist) identifica contextualmente em qual tela o usuário está através da presença da classe .exibir-detalhes-moto:
 
+--Na Garagem: Abre a janela modal #janela-novo-bloco para digitação do nome da moto e do mecânico. Ao confirmar, gera um novo ID único (bloco-Date.now()), inicializa o array de tarefas vazio e cria o novo cartão no DOM.
+
+--Na Tela de Detalhes: Adiciona diretamente um novo objeto { texto: "Nova Revisão", concluida: false } no array da moto ativa, re-renderiza a lista e ativa automaticamente o foco para digitação da descrição da nova tarefa.
 ---
 
 ## Editar (Moto ou Tarefa)
 
-- **Menu do Bloco:** No botão de três pontos do card da moto, ao selecionar "Editar", o cabeçalho `<h1>` da moto é substituído temporariamente por um campo de texto (`<input>`), permitindo alteração rápida.
-- **Item do Checklist:** Ao clicar no ícone de lápis de uma tarefa, a descrição `<p>` é substituída por um `<input>`. Ao pressionar `Enter` ou perder o foco (`blur`), o novo texto é gravado no array e a interface é atualizada.
+--Editar Bloco/Moto: Ao clicar no botão "Editar" dentro do menu de três pontos do cartão, a modal #janela-editar-bloco é exibida com os campos preenchidos com os valores atuais. Ao salvar, os textos do h1 e do mecânico são atualizados no cartão e no cabeçalho ativo.
+
+--Editar Item do Checklist: Ao clicar no ícone de lápis de uma tarefa, a função ativarEdicaoTarefa substitui temporariamente o elemento <p> por um <input>. Ao pressionar a tecla Enter ou perder o foco (onblur), o texto atualizado é gravado no array dadosBlocos e a lista é re-renderizada.
 
 ---
 
@@ -167,4 +157,4 @@ https://andrevitor-dev.github.io/Checklist-Motobox/
 
 # Considerações finais
 
-Este projeto permitiu consolidar na prática os conceitos fundamentais do desenvolvimento web com JavaScript puro, incluindo a manipulação reativa do DOM, tratamento de eventos complexos, persistência de dados local com `localStorage`, criação de interfaces mobile-first com CSS moderno e utilização do Git/GitHub para versionamento e publicação da aplicação.
+Este projeto permitiu consolidar na prática os conceitos fundamentais do desenvolvimento web com JavaScript puro, incluindo a manipulação reativa do DOM, tratamento de eventos complexos, criação de interfaces mobile-first com CSS moderno e utilização do Git/GitHub para versionamento e publicação da aplicação.
